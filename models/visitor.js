@@ -5,9 +5,12 @@ const visitorSchema = mongoose.Schema({
        name: String,
        email: String,
        phone: Number,
-       Date: Date,
-       intime: Number,
-       outtime: Number,
+       time: Number,
+       Date: {
+              type: Date,
+              default: Date.now
+          }
+      
 })
 const visitor = mongoose.model('visitor', visitorSchema)
 export default visitor;

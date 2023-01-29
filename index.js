@@ -3,18 +3,19 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
-import postRoutes from './routes/posts.js'
+import visitorsRoutes from './routes/visitors.js'
 //intialize the app
 const app = express();
 
 //Middleware
 //localhost: 5000/posts
-app.use('/posts', postRoutes);
+
 // now we use all different methods on this app instance
 // setting up body-parser to send our req properly
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
+app.use('/visitors', visitorsRoutes);
 
 
 //Connect with mongo db
