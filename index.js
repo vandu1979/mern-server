@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
-import visitorsRoutes from './routes/visitors.js'
+import visitorRoutes from './routes/visitorRoutes.js';
 //intialize the app
 const app = express();
 
@@ -15,7 +15,7 @@ const app = express();
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
-app.use('/visitors', visitorsRoutes);
+app.use('/', visitorRoutes);
 
 
 //Connect with mongo db
