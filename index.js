@@ -2,8 +2,10 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import dotenv from 'dotenv'
 
 import visitorRoutes from './routes/visitorRoutes.js';
+dotenv.config();
 //intialize the app
 const app = express();
 
@@ -19,7 +21,7 @@ app.use('/', visitorRoutes);
 
 
 //Connect with mongo db
-const CONNECTION_URL = 'mongodb+srv://Vandana12:test123@sei.pvhxva8.mongodb.net/?retryWrites=true&w=majority'
+const CONNECTION_URL = process.env.CONNECTION_URL
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
