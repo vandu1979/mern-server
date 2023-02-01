@@ -59,13 +59,22 @@ const newVisitor = new Visitor(post);
 // Visitor: update visitor data in case changed
 export const updateVisitor = async (req, res) => {
     const { id: _id } = req.params;
-
     const post = req.body;
      if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No visitor with that id');
      const updatedVisitor = 
     await Visitor.findByIdAndUpdate(_id, post, { new: true });
     res.json(updatedVisitor);
+    console.log(updateVisitor)
   }
+  // Admin: delete visitor, this may be required by law ( retention period)
+export const deleteVisitor = async (req, res) => {
+  const { id } = req.params;
+  if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No visitor with that id');
+  await Visitor.findByIdAndDelete({_id: id});
+  console.log('DELETE');
+  res.json({ message: 'Visitor deleted successfully' });
+}
+
 // Visitor: Get visitor last log to be used for checkout/logout
 export const getVisitorLastLog = async (req, res) => {
 // Find visitor by matching phone, email, or name
@@ -167,12 +176,5 @@ export const deleteVisitorLog = async (req, res) => {
   console.log('DELETE');
   res.json({ message: 'Visitor log deleted successfully' });
 }
-// Admin: delete visitor, this may be required by law ( retention period)
-export const deleteVisitor = async (req, res) => {
-  const { id } = req.params;
-  if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No visitor with that id');
-  await Visitor.findByIdAndRemove(id);
-  console.log('DELETE');
-  res.json({ message: 'Visitor deleted successfully' });
-}
+
 
