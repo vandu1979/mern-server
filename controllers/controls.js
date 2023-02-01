@@ -5,7 +5,19 @@ import Visitor from '../models/visitorSchema.js'
 // import  VisitorLog  from '../models/visitorLogSchema.js'
 
 
-// Visitor: Search a visitor 
+// Visitor: Search a visitor existing
+export const getAllVisitor = async (req,res) => {
+  try  {
+       const visitor = await Visitor.find()
+      //  console.log(Visitor);
+       res.status(200).json(visitor);
+      } catch (error) {
+          res.status(404).json({ message: error.message });
+      }
+    }
+     
+
+// this route is for Check-In
 export const getVisitor = async (req, res) => {
     try {
         const visitor = await Visitor.findOne({

@@ -1,11 +1,14 @@
 import  express from 'express';
-import { getVisitor, createVisitor, updateVisitor, deleteVisitor,getVisitorLastLog, createVisitorLog, updateVisitorLog, deleteVisitorLog, getVisitorLogByDate, getVisitorLogByVisitor } from '../controllers/controls.js';
+import { getVisitor, createVisitor, updateVisitor, deleteVisitor,getVisitorLastLog, createVisitorLog, updateVisitorLog, deleteVisitorLog, getVisitorLogByDate, getVisitorLogByVisitor, getAllVisitor } from '../controllers/controls.js';
 const router = express.Router();
 // start adding our routes
-router.get('/getVisitor', getVisitor);
+router.get('/allVisitor', getAllVisitor);
+// this route is for Check-In 
+router.post('/getVisitor', getVisitor);
+
 router.post('/createVisitor', createVisitor);
 //patch is for updating route
-router.patch('/updateVisitor:id', updateVisitor);
+router.patch('/updateVisitor/:id', updateVisitor);
 //============== Visitor Log related routes
 // start adding our routes
 router.get('/getVisitorLastLog', getVisitorLastLog);
